@@ -89,7 +89,7 @@ public class BatikLoader extends SV_DocumentLoader {
 			if("id".equals(nnm.item(i).getNodeName())){
 				String index = nnm.item(i).getNodeValue();
 				index = StringUtils.substringAfter(index, "layer");
-				return new Integer(index);
+				return Integer.valueOf(index);
 			}
 		}
 		return 0;

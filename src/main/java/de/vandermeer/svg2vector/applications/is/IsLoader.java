@@ -103,7 +103,7 @@ public class IsLoader extends SV_DocumentLoader {
 				id = StringUtils.substringBetween(this.lines.get(i), "\"");
 			}
 			if(id!=null && index!=null){
-				this.layers.put(id, new Integer(index));
+				this.layers.put(id, Integer.valueOf(index));
 				inLayer = false;
 				id = null;
 				index = null;
