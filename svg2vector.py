@@ -31,7 +31,7 @@ def convert_svg(input_file, target="pdf", output_dir="output", extra_args=None):
         "-jar", JAR_PATH,
         "s2v-fh",  # Use the FreeHEP/Batik application
         "--target", target,
-        "--file", input_file,
+        "--input-file", input_file,
         "--output-directory", output_dir,
         "--create-directories",
         "--overwrite-existing"
@@ -64,14 +64,17 @@ def convert_svg(input_file, target="pdf", output_dir="output", extra_args=None):
 
 if __name__ == "__main__":
     # Example usage:
-    # python svg2vector.py input.svg [target] [output_dir]
+    # python svg2vector.py examples/layered-test.svg pdf output -l -I
     if len(sys.argv) < 2:
-        print("Usage: python svg2vector.py <input_file> [target] [output_dir]")
+        print("Usage: python svg2vector.py <input_file> [target] [output_dir] [extra_args...]")
         sys.exit(1)
         
     file_path = sys.argv[1]
     target_format = sys.argv[2] if len(sys.argv) > 2 else "pdf"
     out_dir = sys.argv[3] if len(sys.argv) > 3 else "output"
     
-    ret_code = convert_svg(file_path, target_format, out_dir)
+    # Pass all remaining arguments to the converter
+    extra = sys.argv[4:] if len(sys.argv) > 4 else []
+    
+    ret_code = convert_svg(file_path, target_format, out_dir, extra_args=extra)
     sys.exit(ret_code)

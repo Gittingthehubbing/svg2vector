@@ -47,7 +47,7 @@ def convert_svg(input_file, target="pdf", output_dir="output", extra_args=None):
         "-jar", JAR_PATH,
         "s2v-fh",
         "--target", target,
-        "--file", input_file,
+        "--input-file", input_file,
         "--output-directory", output_dir,
         "--create-directories",
         "--overwrite-existing"
@@ -85,7 +85,8 @@ To test your installation quickly:
 python svg2vector.py examples/circle-text.svg pdf output
 
 # Convert a layered SVG (this will create multiple files)
-python svg2vector.py examples/layered-test.svg pdf output --all-layers
+# -l (process layers) -I (use layer names in output)
+python svg2vector.py examples/layered-test.svg pdf output -l -I
 ```
 
 ---
